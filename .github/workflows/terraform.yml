@@ -1,4 +1,4 @@
-name: Deploy EC2 Instance
+name: Deploy website to AWS S3
 
 on:
   push:
@@ -34,6 +34,3 @@ jobs:
 
     - name: Terraform destroy
       run: terraform destroy -auto-approve
-
-    - name: Upload to S3
-      run: aws s3 cp ./game s3://my-meme-card-game/ --recursive
