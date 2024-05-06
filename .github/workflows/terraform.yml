@@ -1,23 +1,39 @@
-# name: Deploy Website to S3
+name: Deploy EC2 Instance
 
-# on:
-#   push:
-#     branches: [ main ]
+on:
+  push:
+    branches:
+      - main
+      
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
-#       - name: Install Terraform
-#         run: |
-#           curl -fsSL (link unavailable) | sudo apt-key add -
-#           sudo apt-add-repository "deb [arch=amd64] (link unavailable) $(lsb_release -cs) main"
-#           sudo apt-get update && sudo apt-get install terraform
-#       - name: Terraform Init
-#         run: terraform init
-#       - name: Terraform Apply
-#         run: terraform apply -auto-approve
-#       - name: Upload to S3
-#         run: aws s3 cp ./website s3://your-website-bucket/ --recursive
+jobs:
+  Terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4      
+      
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        cli_config_credentials_token: ${{ secrets.tfc_team_token }}
+      
+    - name: Terraform Init
+      run: terraform init
+      
+    - name: Terraform Validate
+      run: terraform validate 
+       
+    - name: Terraform Plan
+      run: terraform plan
+         
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+
+    - name: Terraform destroy
+      run: terraform destroy -auto-approve
+
+    - name: Upload to S3
+      run: aws s3 cp ./game s3://my-meme-card-game/ --recursive
