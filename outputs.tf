@@ -1,11 +1,4 @@
-variable "my_bucket_region" {
-    description = "my default bucket region"
-    type = string
-    default = "eu-west-2"
-}
-
-variable "my_bucket_name" {
-    description = "my bucket name"
-    type = string
-    default = "my-meme-card-game"
+output "website_url" {
+    description = "My website URL"
+    value = aws_s3_bucket_website_configuration.web-config.website_endpoint
 }
