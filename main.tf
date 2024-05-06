@@ -2,7 +2,7 @@ provider "aws" {
   region = "eu-west-2"
 }
 
-resource "aws_s3_bucket" "game_bucket" {
+resource "aws_s3_bucket" "my-meme-card-game" {
   bucket = "my-meme-card-game"
   
 
@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "game_bucket" {
 }
 
 resource "aws_s3_bucket_ownership_controls" "example" {
-  bucket = aws_s3_bucket.game_bucket.id
+  bucket = aws_s3_bucket.my-meme-card-game.id
 
   rule {
     object_ownership = "BucketOwnerPreferred"
@@ -21,12 +21,12 @@ resource "aws_s3_bucket_ownership_controls" "example" {
 }
 
 resource "aws_s3_bucket_acl" "example" {
-  bucket = "my-meme-card-game"
+  bucket = aws_s3_bucket.my-meme-card-game.id
   acl    = "private"
 }
 
 resource "aws_s3_bucket_public_access_block" "example" {
-  bucket = aws_s3_bucket.game_bucket.id
+  bucket = aws_s3_bucket.my-meme-card-game.id
 
   block_public_acls       = false
   block_public_policy     = false
