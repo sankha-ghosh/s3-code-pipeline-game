@@ -12,6 +12,14 @@ resource "aws_s3_bucket" "game_bucket" {
   }
 }
 
+resource "aws_s3_bucket_ownership_controls" "example" {
+  bucket = aws_s3_bucket.game_bucket.id
+
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
 resource "aws_s3_bucket_acl" "example" {
   bucket = "my-meme-card-game"
   acl    = "private"
