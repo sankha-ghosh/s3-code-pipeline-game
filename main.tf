@@ -13,12 +13,12 @@ resource "aws_s3_bucket" "game_bucket" {
 }
 
 resource "aws_s3_bucket_acl" "example" {
-  bucket = aws_s3_bucket.game_bucket.id
+  bucket = "my-meme-card-game"
   acl    = "public-read"
 }
 
 resource "aws_s3_bucket_policy" "bucket_policy" {
-  bucket = aws_s3_bucket.game_bucket.id
+  bucket = "my-meme-card-game"
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -28,14 +28,14 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
         Effect    = "Allow"
         Principal = "*"
         Action    = ["s3:GetObject"]
-        Resource  = ["arn:aws:s3:::game_bucket/*"]
+        Resource  = ["arn:aws:s3:::my-mem-card-game/*"]
       }
     ]
   })
 }
 
 resource "aws_s3_bucket_website_configuration" "website" {
-  bucket = aws_s3_bucket.game_bucket.id
+  bucket = "my-meme-card-game"
 
   index_document {
     suffix = "index.html"
