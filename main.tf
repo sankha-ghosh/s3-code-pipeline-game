@@ -46,8 +46,8 @@ resource "aws_s3_bucket_policy" "host_bucket_policy" {
         {
             "Sid": "PublicReadGetObject",
             "Effect" : "Allow",
-        "Principal" : "*",
-        "Action" : "s3:GetObject",
+            "Principal" : "*",
+            "Action" : "s3:GetObject",
             "Resource": "arn:aws:s3:::${var.my_bucket_name}/*"
         }
     ]
