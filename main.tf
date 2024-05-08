@@ -45,10 +45,9 @@ resource "aws_s3_bucket_policy" "host_bucket_policy" {
     "Statement": [
         {
             "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Action": [
-                "s3:*",
-                "s3-object-lambda:*"
+            "Effect" : "Allow",
+        "Principal" : "*",
+        "Action" : "s3:GetObject",
             ],
             "Resource": "arn:aws:s3:::${var.my_bucket_name}/*"
         }
