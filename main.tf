@@ -52,7 +52,8 @@ resource "aws_s3_bucket_policy" "host_bucket_policy" {
             ],
             "Resource": "arn:aws:s3:::${var.my_bucket_name}/*"
         }
-    ],
+    ]
+  })
 }
 
 
