@@ -1,7 +1,7 @@
 # AWS S3 bucket resource
 
 resource "aws_s3_bucket" "test-bucket" {
-  bucket = var.my_bucket_name # Name of the S3 bucket
+  bucket = "02terraformstatebucket" # Name of the S3 bucket
 }
 
 
