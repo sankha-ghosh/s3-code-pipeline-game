@@ -1,7 +1,7 @@
 variable "my_bucket_region" {
     description = "my default bucket region"
     type = string
-    default = "eu-west-2"
+    default = "us-east-1"
 }
 
 variable "my_bucket_name" {
