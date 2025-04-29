@@ -7,5 +7,5 @@ variable "my_bucket_region" {
 variable "my_bucket_name" {
     description = "my bucket name"
     type = string
-    default = "my-meme-card-game"
+    default = "02terraformstatebucket"
 }
