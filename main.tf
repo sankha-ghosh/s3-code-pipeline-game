@@ -39,6 +39,10 @@ resource "aws_s3_bucket_acl" "example" {
 resource "aws_s3_bucket_policy" "host_bucket_policy" {
   bucket =  aws_s3_bucket.test-bucket.id # ID of the S3 bucket
 
+  depends_on = [
+    aws_s3_bucket_public_access_block.example
+  ]
+
   # Policy JSON for allowing public read access
   policy = jsonencode({
     "Version": "2012-10-17",
